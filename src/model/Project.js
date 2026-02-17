@@ -1,14 +1,14 @@
-import { Todo } from "./todo.js";
+import { Todo } from "./Todo.js";
 
 class Project {
-    constructor(name){
+    constructor(title){
         this.id = crypto.randomUUID();
-        this.name = name;
+        this.title = title;
         this.todoItems = [];
     }
 
-    createTodo(name){
-        const todo = new Todo(name);
+    createTodo(title, description = null, dueDate = null, priority = null){
+        const todo = new Todo(title, description, dueDate, priority);
         this.todoItems.push(todo);
         return todo;
     }

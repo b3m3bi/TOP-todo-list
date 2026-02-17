@@ -1,5 +1,3 @@
-
-
 class Todo {
     state = "todo"
     constructor(title, description = null, dueDate = null, priority = null) {
@@ -19,6 +17,10 @@ class Todo {
 
     changeState() {
         this.state = this.state === "todo" ? "done" : "todo";
+    }
+
+    getPartenProjectID() {
+
     }
 }
 

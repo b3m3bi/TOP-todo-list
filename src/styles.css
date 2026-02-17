@@ -1,0 +1,184 @@
+@import url(https://fonts.bunny.net/css?family=rubik:300,300i,600);
+
+:root{
+    font-family: 'Rubik', sans-serif;
+
+    --bg-color: rgb(255, 255, 255);
+    --shadow-color: rgb(230, 230, 230);
+    --border-color: rgb(209, 209, 209);
+
+    --primary-color: rgb(0,0,0);
+    --secondary-color: rgb(121, 121, 121); 
+    --third-color: rgb(218, 218, 218);
+
+    --danger-color: rgb(224, 35, 35);
+    --warning-color: rgb(187, 196, 15);
+}
+
+.main-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+.project-title, .project-page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.page-title-container{
+    margin: 16px 0;
+}
+
+.page-title-container input {
+    color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    border: 1px solid var(--bg-color);
+}
+
+.page-title-container input:focus {
+    color: var(--secondary-color);
+    outline: none;
+    border: 1px solid var(--secondary-color);
+}
+
+
+.todo-item {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 2px 2px 2px var(--shadow-color);
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.todo-item-top-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+}
+
+.todo-title-container{
+    flex-grow: 1;
+}
+
+.todo-btn svg {
+    height: 1.15rem;
+}
+
+
+.todo-btn{
+    color: var(--secondary-color);
+}
+
+.todo-btn:hover{
+    color: var(--primary-color);
+}
+
+.todos-container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.todo-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.todo-due {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+.todo-description {
+    font-size:  0.9rem;
+    color: var(--secondary-color);
+}
+
+.todo-title-priority-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.todo-priority-container {
+    padding: 2px;
+    font-size: 0.6rem;
+    font-weight: bold;
+    width: fit-content;
+    
+    padding: 2px 6px;
+    border-radius: 16px;
+}
+
+.todo-priority-high {
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+.todo-priority-low {
+    color: var(--warning-color);
+    border: 1px solid var(--warning-color);
+}
+
+.todo-display-null, .todo-priority-null {
+    display: none;
+}
+
+.todo-completed, .todo-completed span{
+    color: var(--third-color);
+}
+
+.todo-completed .todo-priority-container {
+    border: 1px solid var(--third-color);
+}
+
+.project-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.project-item {
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px;
+}
+
+.project-item:hover{
+    background-color: var(--third-color);
+    cursor: pointer;
+}
+
+.projects-container{
+    margin-top: 8px;
+}
+
+.project-item-num-elements {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.return-btn-container svg{
+    height: 1.6rem;
+    padding: 8px 16px;
+}
+
+.return-btn-container {
+    color: var(--secondary-color);
+}
+
+.return-btn-container:hover{
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.page-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
