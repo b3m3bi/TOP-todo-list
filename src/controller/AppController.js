@@ -11,13 +11,17 @@ class AppController{
         renderAllProjectsPage(this.app);
     }
 
-    showProjectPage(projectId){
+    showProjectPage(projectId, focusProjectTitle){
         const project = this.app.getProject(projectId);
-        renderProjectPage(project);
+        renderProjectPage(project, focusProjectTitle);
     }
 
     deleteTodoFromProject(projectId, todoId){
         this.app.getProject(projectId).deleteTodo(todoId);
+    }
+
+    addTodoToProject(projectId){
+        this.app.getProject(projectId).createTodo();
     }
 }
 

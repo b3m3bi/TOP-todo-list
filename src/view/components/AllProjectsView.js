@@ -1,3 +1,4 @@
+import { appController } from "../../index.js";
 import projectItemTemplate from "../templates/project-item-template.html";
 import projectPageTemplate from "../templates/project-page-template.html";
 import { renderProjectPage } from "./ProjectView.js";
@@ -30,6 +31,13 @@ function createAllProjectsPage(app){
             projectsContainer.appendChild(createProjectItem(project));
         }
     );
+
+    const addProjectBtn = projectPageElement.querySelector('.create-project-btn');
+    addProjectBtn.addEventListener('click', () => {
+        const newProject = app.createProject('Nuevo proyecto');
+        appController.showProjectPage(newProject.id, true);
+    })
+
     return projectPageElement;
 }
     

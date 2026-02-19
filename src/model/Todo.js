@@ -8,7 +8,7 @@ class Todo {
         this.priority = priority;
     }
 
-    editTodo(title, description = null, dueDate = null, priority = null){
+    editTodo(title = null, description = null, dueDate = null, priority = null){
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -19,8 +19,8 @@ class Todo {
         this.state = this.state === "todo" ? "done" : "todo";
     }
 
-    getPartenProjectID() {
-
+    getState() {
+        return this.state;
     }
 }
 

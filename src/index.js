@@ -7,8 +7,8 @@ const appController = new AppController(todoApp);
 
 const project01 = todoApp.createProject("Proyecto 1");
 
-project01.createTodo("Hacer popó", "Que salga muy bonita y redondita como de conejo", null, "low");
-project01.createTodo("Limpiar mi cuarto", "Tirar todo lo que no sirva", "hoy", "high");
+project01.createTodo("Hacer popó", "Que salga muy bonita y redondita como de conejo", new Date("1995-08-28"), "high");
+project01.createTodo("Limpiar mi cuarto", "Tirar todo lo que no sirva", new Date() , "low");
 project01.createTodo("Tocar trompeta");
 
 // console.log(todoApp.getProjects());

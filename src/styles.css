@@ -1,8 +1,6 @@
 @import url(https://fonts.bunny.net/css?family=rubik:300,300i,600);
 
 :root{
-    font-family: 'Rubik', sans-serif;
-
     --bg-color: rgb(255, 255, 255);
     --shadow-color: rgb(230, 230, 230);
     --border-color: rgb(209, 209, 209);
@@ -13,6 +11,11 @@
 
     --danger-color: rgb(224, 35, 35);
     --warning-color: rgb(187, 196, 15);
+    --warning2-color: rgb(196, 121, 15);
+}
+
+html * {
+    font-family: 'Rubik', sans-serif;
 }
 
 .main-container {
@@ -42,6 +45,21 @@
     border: 1px solid var(--secondary-color);
 }
 
+.todo-item[data-editing="true"] .edit-mode {
+    display: block;
+}
+
+.todo-item[data-editing="false"] .edit-mode {
+    display: none;
+}
+
+.todo-item[data-editing="true"] .view-mode {
+    display: none;
+}
+
+.todo-item[data-editing="false"] .view-mode {
+    display: block;
+}
 
 .todo-item {
     border: 1px solid var(--border-color);
@@ -51,30 +69,28 @@
 
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
+
+    transition: transform .1s;
 }
 
 .todo-item-top-container {
     display: flex;
     flex-direction: row;
     gap: 8px;
-
+    align-items: center;
 }
 
-.todo-title-container{
+.todo-title, .edit-title {
     flex-grow: 1;
 }
 
-.todo-btn svg {
+.todo-btns svg {
     height: 1.15rem;
-}
-
-
-.todo-btn{
     color: var(--secondary-color);
 }
 
-.todo-btn:hover{
+.todo-btns svg:hover{
     color: var(--primary-color);
 }
 
@@ -84,64 +100,11 @@
     gap: 8px;
 }
 
-
-.todo-text-container {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.todo-due {
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--secondary-color);
-}
-.todo-description {
-    font-size:  0.9rem;
-    color: var(--secondary-color);
-}
-
-.todo-title-priority-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.todo-priority-container {
-    padding: 2px;
-    font-size: 0.6rem;
-    font-weight: bold;
-    width: fit-content;
-    
-    padding: 2px 6px;
-    border-radius: 16px;
-}
-
-.todo-priority-high {
-    color: var(--danger-color);
-    border: 1px solid var(--danger-color);
-}
-
-.todo-priority-low {
-    color: var(--warning-color);
-    border: 1px solid var(--warning-color);
-}
-
-.todo-display-null, .todo-priority-null {
-    display: none;
-}
-
-.todo-completed, .todo-completed span{
-    color: var(--third-color);
-}
-
-.todo-completed .todo-priority-container {
-    border: 1px solid var(--third-color);
-}
-
 .project-page{
     display: flex;
     flex-direction: column;
+    position: relative;
+    height: 100vh;
 }
 
 .project-item {
@@ -181,4 +144,96 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+
+.todo-priority {
+    font-size: 0.6rem;
+    border-radius: 16px;
+    padding: 4px;
+    width: fit-content;
+    font-weight: 600;
+    color: white;
+}
+
+.todo-priority:empty {
+    display: none !important ;
+}
+
+.high-priority {
+    background-color: var(--danger-color);
+}
+
+.low-priority {
+    background-color: var(--warning-color);
+}
+
+.meddium-priority {
+    background-color: var(--warning2-color);
+}
+
+.todo-date, .edit-date {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+.todo-description, .edit-description {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+
+.edit-title {
+    font-size: 1rem;
+}
+
+.edit-title, .edit-date, .edit-description {
+    padding: 4px;
+    resize: none;
+    border-radius: 8px;
+    border: 1px solid var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.todo-completed .todo-title,
+.todo-completed > .todo-date,
+.todo-completed > .todo-description {
+    color: var(--third-color) ;
+}
+
+.todo-completed .todo-priority {
+    background-color: var(--third-color);
+}
+
+.todo-item:hover {
+    transform: scale(1.03);
+}
+
+.add-todo-btn,
+.create-project-btn {
+    background-color: var(--third-color);
+    border: none;
+    border-radius: 12px;
+    padding: 8px;
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    box-shadow: 1px 1px 1px var(--shadow-color);
+}
+
+.add-todo-btn:hover,
+.create-project-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+}
+
+.add-todo-btn > svg,
+.create-project-btn > svg{
+    height: 1rem;
+}
+
+.add-btn-container{
+    display: flex;
+    justify-content: flex-end;
 }
