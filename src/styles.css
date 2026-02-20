@@ -85,13 +85,23 @@ html * {
     flex-grow: 1;
 }
 
+.todo-btns{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
 .todo-btns svg {
     height: 1.15rem;
     color: var(--secondary-color);
 }
 
-.todo-btns svg:hover{
+.todo-btn-edit svg:hover{
     color: var(--primary-color);
+}
+
+.todo-btn-delete svg:hover{
+    color: var(--danger-color);
 }
 
 .todos-container{
@@ -109,12 +119,8 @@ html * {
 
 .project-item {
     border-bottom: 1px solid var(--border-color);
-    padding: 16px;
-}
-
-.project-item:hover{
-    background-color: var(--third-color);
-    cursor: pointer;
+    display: flex;
+    align-items: stretch;
 }
 
 .projects-container{
@@ -236,4 +242,30 @@ html * {
 .add-btn-container{
     display: flex;
     justify-content: flex-end;
+}
+
+.project-btn-delete svg {
+    height: 1.2rem;
+}
+
+.project-item-text {
+    flex-grow: 1;
+    padding: 16px;
+}
+
+.project-btn-delete {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    
+}
+
+.project-btn-delete:hover{
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.project-item-text:hover{
+    background-color: var(--third-color);
+    cursor: pointer;
 }

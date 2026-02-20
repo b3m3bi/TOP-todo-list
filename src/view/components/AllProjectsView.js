@@ -11,10 +11,19 @@ function createProjectItem(project){
     const div = document.createElement('div');
     div.innerHTML = html;
 
-    const projectElement = div.firstElementChild;   
-    projectElement.addEventListener('click', () => {
+    const projectElement = div.firstElementChild; 
+    const projectTextElement = projectElement.querySelector('.project-item-text');  
+    projectTextElement.addEventListener('click', () => {
         renderProjectPage(project);
     })
+
+    const deleteProjectBtn = projectElement.querySelector('.project-btn-delete');
+    deleteProjectBtn.addEventListener('click', () => {
+        appController.deleteProject(project.id);
+        appController.showAllProjectsPage();
+        appController.saveToLocalStorage();
+    })
+
     return projectElement;
 }
 
@@ -36,7 +45,9 @@ function createAllProjectsPage(app){
     addProjectBtn.addEventListener('click', () => {
         const newProject = app.createProject('Nuevo proyecto');
         appController.showProjectPage(newProject.id, true);
-    })
+
+        appController.saveToLocalStorage();
+    });
 
     return projectPageElement;
 }

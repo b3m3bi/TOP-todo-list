@@ -28,6 +28,7 @@ function createTodoItem(projectId, todo){
     deleteBtn.addEventListener('click', () => {
         appController.deleteTodoFromProject(projectId, todo.id);
         todoElement.remove();
+        appController.saveToLocalStorage();
     })
 
     const editBtn = todoElement.querySelector('.todo-btn-edit');
@@ -37,13 +38,10 @@ function createTodoItem(projectId, todo){
             todoElement.dataset.editing = "false";
             updateTodoViewMode(todoElement, todo);
         } else {
+            appController.deactivateEditModeOnAllTodos();
             todoElement.dataset.editing = "true";
         }
     });
-
-    if (!todo.title){
-        editBtn.click();
-    }
 
     updateTodoEditMode(todoElement, todo);
     updateTodoViewMode(todoElement, todo);
@@ -52,10 +50,12 @@ function createTodoItem(projectId, todo){
 }
 
 function updateTodoEditMode(todoElement, todo) {
-     const inputTitle = todoElement.querySelector('.edit-title');
+    const inputTitle = todoElement.querySelector('.edit-title');
     inputTitle.value = todo.title;
     inputTitle.addEventListener('input', () => {
         todo.title = inputTitle.value;
+        updateTodoViewMode(todoElement, todo);
+        appController.saveToLocalStorage();
     });
     if (todo.title == undefined){
         inputTitle.value = ""
@@ -66,19 +66,25 @@ function updateTodoEditMode(todoElement, todo) {
         radio.checked = radio.value === todo.priority;
         radio.addEventListener('change', () => {
             todo.priority = radio.value;
-        })
+            updateTodoViewMode(todoElement, todo);
+            appController.saveToLocalStorage();
+        });
     });
 
     const inputDate = todoElement.querySelector('.edit-date');
-    inputDate.valueAsDate = todo.dueDate;
+    inputDate.valueAsDate = todo.dueDate ? new Date(todo.dueDate) : null;
     inputDate.addEventListener('change', () => {
         todo.dueDate = inputDate.valueAsDate;
+        updateTodoViewMode(todoElement, todo);
+        appController.saveToLocalStorage();
     })
 
     const textDescription = todoElement.querySelector('.edit-description');
     textDescription.value = todo.description;
     textDescription.addEventListener('input', () => {
         todo.description = textDescription.value;
+        updateTodoViewMode(todoElement, todo);
+        appController.saveToLocalStorage();
     })
 
 }
@@ -132,12 +138,26 @@ function createProjectPage(project){
 
     const addTodoBtn = projectPageElement.querySelector('.add-todo-btn');
     addTodoBtn.addEventListener('click', () => {
-        appController.addTodoToProject(project.id);
-        appController.showProjectPage(project.id);
+        const newTodo = appController.addTodoToProject(project.id);
+        const newTodoElement = createTodoItem(project.id, newTodo);
+        todosContainer.appendChild(newTodoElement);
+
+        turnOffEditModeOnAllTodos();
+        newTodoElement.querySelector('.todo-btn-edit').click();
+        newTodoElement.querySelector('.edit-title').focus();
     });
 
     return projectPageElement;
 }
+
+function turnOffEditModeOnAllTodos(){
+    const todosContainer = document.querySelector('.todos-container'); 
+    const todosItems = todosContainer.querySelectorAll('.todo-item');
+    todosItems.forEach(todoItem => {
+        todoItem.dataset.editing = "false";
+    });
+}
+
 
 function renderProjectPage(project, focusProjectTitle = false){
     const mainContainter = document.querySelector('.main-container');
@@ -151,4 +171,4 @@ function renderProjectPage(project, focusProjectTitle = false){
     }
 }
 
-export {renderProjectPage};
+export {renderProjectPage, turnOffEditModeOnAllTodos};

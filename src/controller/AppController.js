@@ -1,5 +1,5 @@
 import { renderAllProjectsPage } from "../view/components/AllProjectsView.js";
-import { renderProjectPage } from "../view/components/ProjectView.js";
+import { renderProjectPage, turnOffEditModeOnAllTodos } from "../view/components/ProjectView.js";
 
 class AppController{
 
@@ -21,8 +21,21 @@ class AppController{
     }
 
     addTodoToProject(projectId){
-        this.app.getProject(projectId).createTodo();
+        return this.app.getProject(projectId).createTodo();
     }
+
+    deactivateEditModeOnAllTodos(){
+        turnOffEditModeOnAllTodos();
+    }
+
+    deleteProject(projectId){
+        this.app.deleteProject(projectId);
+    }
+
+    saveToLocalStorage(){
+        localStorage.setItem( "todoApp", JSON.stringify(this.app));
+    }
+
 }
 
 export {AppController};

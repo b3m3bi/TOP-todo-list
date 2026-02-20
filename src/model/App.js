@@ -20,7 +20,7 @@ class App {
     }
 
     deleteProject(id){
-        const index = this.projects.find(project => project.id === id);
+        const index = this.projects.findIndex(project => project.id === id);
         this.projects.splice(index, 1);
     }
 }
